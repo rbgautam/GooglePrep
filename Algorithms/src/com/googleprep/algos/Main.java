@@ -19,8 +19,8 @@ public class Main {
 
 		System.out.println("Hello World!!");
 		System.out.println("Hello World!!");
-		System.out.println("New comment to check conflict");
-		
+		System.out.println("Comment changed to resolve conflict");
+	
 
 
 	}
