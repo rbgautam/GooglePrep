@@ -10,7 +10,7 @@ import java.io.File;
 
 public class ReadXML {
 
-	public static StringBuffer ReadTopMenu() {
+	public static StringBuffer ReadTopMenu(String nodeName) {
 
 		StringBuffer menuString = new StringBuffer();
 
@@ -23,12 +23,12 @@ public class ReadXML {
 			Document doc = dBuilder.parse(xmlFile);
 			doc.getDocumentElement().normalize();
 
-			NodeList nList = doc.getElementsByTagName("Menu");
+			NodeList nList = doc.getElementsByTagName(nodeName);
 			for (int i = 0; i < nList.getLength(); i++) {
 				Node nNode = nList.item(i);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
-					menuString.append(eElement.getAttribute("Text"));
+					menuString.append(((Integer)(i+1)).toString()+"."+  eElement.getAttribute("text")+"\n");
 				}
 			}
 		} catch (Exception e) {
