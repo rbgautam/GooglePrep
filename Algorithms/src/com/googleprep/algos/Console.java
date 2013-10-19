@@ -26,8 +26,10 @@ public class Console {
 			System.err.println(e.getMessage());
 		} 
 		finally {
-			return str;
+			
 		}
+		
+		return str;
 	}
 
 }

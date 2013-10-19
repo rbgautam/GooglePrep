@@ -34,8 +34,9 @@ public class ReadXML {
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		} finally {
-			return menuString;
+			
 		}
+		return menuString;
 	}
 
 }
