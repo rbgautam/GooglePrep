@@ -17,7 +17,7 @@ public class Main {
 
 		System.out.println(ReadXML.ReadTopMenu("Menu"));
 		Console cObj = Console.CreateConsole();
-		String userInput = cObj.ReadUserInput();
+		String userInput = cObj.getData();
 		System.out.println(userInput);
 		
 		
