@@ -9,10 +9,21 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 public class ReadXML {
+	
+	private static String menuCount= new String();
+
+	public static String getMenuCount() {
+		return menuCount;
+	}
+
+	public static void setMenuCount(String count) {
+		menuCount = menuCount + " " +count;
+	}
 
 	public static StringBuffer ReadTopMenu(String nodeName) {
 
 		StringBuffer menuString = new StringBuffer();
+		
 
 		try {
 			// File Reading
@@ -24,11 +35,15 @@ public class ReadXML {
 			doc.getDocumentElement().normalize();
 
 			NodeList nList = doc.getElementsByTagName(nodeName);
+			String iCount;
 			for (int i = 0; i < nList.getLength(); i++) {
+				
 				Node nNode = nList.item(i);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
-					menuString.append(((Integer)(i+1)).toString()+"."+  eElement.getAttribute("text")+"\n");
+					iCount = ((Integer)(i+1)).toString();
+					menuString.append(iCount+"."+  eElement.getAttribute("text")+"\n");
+					setMenuCount(iCount);
 				}
 			}
 		} catch (Exception e) {

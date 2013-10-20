@@ -1,9 +1,11 @@
 package com.googleprep.algos;
 
+import com.googleprep.utils.KeyboardInput;
+
 
 public class Console {
 	private static Console instance = null;
-	private KeyboardInput data = new KeyboardInput(new String());
+	private KeyboardInput data;
 	private Console() {
 		
 		//System.out.println(ReadXML.ReadTopMenu("Menu"));
@@ -16,12 +18,12 @@ public class Console {
 		return instance;
 	}
 
-	public void setData(KeyboardInput data) {
-		this.data = data;
+	public void setData(String menuOptions) {
+		this.data = new KeyboardInput(menuOptions);
 	}
 
-	public String getData() {
-		return data.getStrUserInput();
+	public KeyboardInput getData() {
+		return data;
 	}
 	
 
