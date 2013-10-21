@@ -35,7 +35,7 @@ public class KeyboardInput {
 			System.out.println("Enter your selection "+menuOptions+": ");
 			setStrUserInput(br.readLine());
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			System.err.println("Error"+e.getMessage());
 		} 
 		finally {
 			
