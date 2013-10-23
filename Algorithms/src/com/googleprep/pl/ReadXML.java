@@ -1,6 +1,7 @@
 package com.googleprep.pl;
 
 //import javax.print.Doc;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,9 +20,7 @@ import java.io.IOException;
  * user can select subMenu
  * 
  **/
-
 public class ReadXML {
-
 	// menuCount is used in ReadTopMenu() to count number of tags with the
 	// nodeName passes as a parameter in the function
 	private static String menuCount = new String();
@@ -38,16 +37,15 @@ public class ReadXML {
 
 	private static Document xmlFile() throws ParserConfigurationException,
 			SAXException, IOException {
-		try
-		{
+		try {
 			File xmlFile = new File("Menu.XML");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
+					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(xmlFile);
 			return doc;
-		}
-		 finally {
-			 //xmlFile.Close();
+		} finally {
+			// xmlFile.Close();
 		}
 	}
 
@@ -60,43 +58,61 @@ public class ReadXML {
 			// formats or normalized the file in case it is not
 			doc.getDocumentElement().normalize();
 
-			NodeList nList = doc.getElementsByTagName(nodeName);
-			NodeList nSubList = doc.getElementsByTagName("SubMenu");
-			String iCount, XMLstr;
-			int nListLength = nList.getLength();
+			NodeList nList, nSubList;
+			Node nNode, nSubNode;
+			Element eElement, eSubElement;
+			String iCount, iSubCount;
+			int i, j;
+			int nListLength, nSubListLength;
 
-			for (int i = 0; i < nListLength; i++) {
-				Node nNode = nList.item(i);
+			nList = doc.getElementsByTagName(nodeName);
+			nListLength = nList.getLength();
+			for (i = 0; i < nListLength; i++) {
+				nNode = nList.item(i);
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
+					eElement = (Element) nNode;
 					iCount = ((Integer) (i + 1)).toString();
 					menuString.append(iCount + "."
 							+ eElement.getAttribute("text") + "\n");
 					setMenuCount(iCount);
+					
+					// Test Block
+					// nodeSubName == nSubNode.getNodeName()
+					 //= eElement.getAttribute("text");
+					
+					String test = eElement.getAttribute("text");
+					System.out.println(test);
+					
+//					if(eElement.getAttribute("text")==test)
+//						System.out.println("True");
+//					else
+//						System.out.println("False");
+					
+					// End of test block
+					
+					String nodeSubName = "Sort";
+					nSubList = doc.getElementsByTagName(nodeSubName);
+					nSubListLength = nSubList.getLength();
+					for (j = 0; j < nSubListLength; j++) {
+						nSubNode = nSubList.item(j);
 
-					XMLstr = eElement.getAttribute("text");
-
-					for (int j = 0; j < nSubList.getLength(); j++) {
-						Node nSubNode = nSubList.item(j);
-
-						if (nSubNode.getNodeType() == Node.ELEMENT_NODE) {
-							Element element = (Element) nSubNode;
-							if (element.getAttribute(XMLstr) != "")
-								menuString.append(element.getAttribute(XMLstr)
+						if (nodeSubName == nSubNode.getNodeName()) { // Check for sub menu
+							if (nSubNode.getNodeType() == Node.ELEMENT_NODE) {
+								eSubElement = (Element) nSubNode;
+								// System.out.println("Esub: "+eSubElement.getAttribute("Sort"));
+								iSubCount = ((Integer) (i + 1)).toString();
+								menuString.append( eSubElement.getAttribute("id")
 										+ "\n");
+								//System.out.println("E" +eSubElement.getAttribute("id"));
+								setMenuCount(iSubCount);
 
-							// System.out.println("Element: " +
-							// ((Element)nSubList.item(j)).getNodeName());
-							// System.out.println("SubMenu"+element.getAttribute(XMLstr));
-
+							}// End of if nSubNode
 						}
-
 					}
-				}
+				}// End of if nNode
 			}
 		}
-
 		catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		} finally {
@@ -104,12 +120,5 @@ public class ReadXML {
 		}
 		return menuString;
 	}
-
-	/**
-	 * @return
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
-	 * @throws IOException
-	 */
 
 }

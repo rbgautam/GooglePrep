@@ -7,7 +7,7 @@ import com.googleprep.utils.KeyboardInput;
 
 /**
  * @author Deltaman
- *
+ * 
  */
 public class Main {
 
@@ -18,21 +18,23 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		KeyboardInput keyObj;
-		System.out.println("Menu List-------------");
-		System.out.println(ReadXML.ReadTopMenu("Menu"));
-//		;
+		String tagStr ="Menu";
+		System.out.println("Menu List\n----------");
+		System.out.println(ReadXML.ReadTopMenu(tagStr));
 		Console cObj = Console.CreateConsole();
 		cObj.setData(ReadXML.getMenuCount());
 		keyObj = cObj.getData();
 		String userInput = keyObj.getStrUserInput();
-		// print 1,2,3 
-//		String useSelection = keyObj.getNumOption();
-		System.out.println(userInput);
 		
+		System.out.println("User Choice is "+userInput);
 		
+//		int intUserInput =Integer.parseInt(userInput);
+//		//System.out.println(ReadXML.readSubMenu(tagStr, intUserInput));
+//		cObj = Console.CreateConsole();
+//		cObj.setData(ReadXML.getMenuCount());
+//		keyObj = cObj.getData();
 		
-		
-	
+
 	}
 
 }
