@@ -1,4 +1,4 @@
-package com.junit;
+package com.slist.junit;
 
 
 import org.junit.After;
