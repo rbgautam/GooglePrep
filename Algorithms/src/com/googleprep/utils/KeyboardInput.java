@@ -3,17 +3,23 @@ package com.googleprep.utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/***
+ * 
+ * The purpose of the class 'KeyboardInput' is to dealt with user's Input from the keyboard
+ *
+ */
+
 public class KeyboardInput {
 	private String strUserInput;
-	private String numOption;
-
-	public String getNumOption() {
-		return numOption;
-	}
-
-	public void setNumOption(String numOption) {
-		this.numOption = numOption;
-	}
+//	private String numOption;
+//
+//	public String getNumOption() {
+//		return numOption;
+//	}
+//
+//	public void setNumOption(String numOption) {
+//		this.numOption = numOption;
+//	}
 
 	public KeyboardInput(String strUserInput) {
 		this.strUserInput = ReadUserInput(strUserInput);

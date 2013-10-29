@@ -1,24 +1,27 @@
+
 <?xml version="1.0" encoding="utf-8" ?>
     <MenuRoot>
         <Menu text="Sort" >
-            <Sort id="Quick"></Sort>
-            <Sort id="Bubble"></Sort>
-            <Sort id="Insertion"></Sort>
+            <SubMenu> Quick </SubMenu>
+            <SubMenu> Bubble </SubMenu>
+            <SubMenu> Insertion </SubMenu>
         </Menu>
         <Menu text="Search" >
-            <Search id="Linear"></Search>
-            <Search id="Binary"></Search>
+            <SubMenu> Linear </SubMenu>
+            <SubMenu> Binary </SubMenu>
+            
         </Menu>
-         <Menu text="Tree" >
-             <Tree id="RnB"></Tree>
-             <Tree id="Binary"></Tree>
-             <Tree id="N-nary"></Tree>
-             <Tree id="AVL"></Tree>
+        <Menu text="Tree" >
+            <SubMenu> RnB </SubMenu>
+            <SubMenu> Binary </SubMenu>
+            <SubMenu> N-nary </SubMenu>
+            <SubMenu> AVL </SubMenu>
         </Menu>
-         <Menu text="Graphs" >
-            <Graphs id="Shortest Path"></Graphs>
-            <Graphs id="BFS"></Graphs>
-            <Graphs id="DFS"></Graphs>
-            <Graphs id="Min Span Tree"></Graphs>
+        <Menu text="Graphs" >
+            <SubMenu> Shortest Path </SubMenu>
+            <SubMenu> BFS </SubMenu>
+            <SubMenu> DFS </SubMenu>
+            <SubMenu> Min Span Tree </SubMenu>
         </Menu>
+         
     </MenuRoot>

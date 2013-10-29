@@ -1,7 +1,12 @@
 package com.googleprep.pl;
 
 import com.googleprep.utils.KeyboardInput;
-
+/**
+ * 
+ * Purpose of the console is to create a class to dealt with console 
+ * User's Input output
+ *
+ */
 
 public class Console {
 	private static Console instance = null;

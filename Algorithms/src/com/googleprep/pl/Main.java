@@ -18,21 +18,16 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		KeyboardInput keyObj;
-		String tagStr ="Menu";
+		String tagStr ="MenuRoot";
 		System.out.println("Menu List\n----------");
-		System.out.println(ReadXML.ReadTopMenu(tagStr));
-		Console cObj = Console.CreateConsole();
-		cObj.setData(ReadXML.getMenuCount());
-		keyObj = cObj.getData();
+		System.out.println(ReadXML.ReadTopMenu(tagStr)); //call to read  an xml file
+		Console cObj = Console.CreateConsole();  // Create a console object
+		cObj.setData(ReadXML.getMenuCount()); // display main menu read from an xml file
+		keyObj = cObj.getData();  //  read user's choice from the keyboard
 		String userInput = keyObj.getStrUserInput();
-		
 		System.out.println("User Choice is "+userInput);
 		
-//		int intUserInput =Integer.parseInt(userInput);
-//		//System.out.println(ReadXML.readSubMenu(tagStr, intUserInput));
-//		cObj = Console.CreateConsole();
-//		cObj.setData(ReadXML.getMenuCount());
-//		keyObj = cObj.getData();
+
 		
 
 	}
