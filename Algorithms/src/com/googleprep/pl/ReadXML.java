@@ -6,8 +6,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
 
-
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
@@ -38,19 +38,21 @@ public class ReadXML {
 	}
 
 	@SuppressWarnings("finally")
-	private static Document xmlFile() //throws ParserConfigurationException,SAXException, IOException {
+	private static Document xmlFile() // throws
+										// ParserConfigurationException,SAXException,
+										// IOException {
 	{
 		Document doc = null;
 		try {
 			File xmlFile = new File("Menu.XML");
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilderFactory factory = DocumentBuilderFactory
+					.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(xmlFile);
 			return doc;
-		} catch(Exception e) {
-			System.err.println("Error : "+e);
-		}
-		finally{
+		} catch (Exception e) {
+			System.err.println("Error : " + e);
+		} finally {
 			return doc;
 		}
 	}
@@ -58,27 +60,97 @@ public class ReadXML {
 	public static StringBuffer ReadTopMenu(String nodeName) {
 		StringBuffer menuString = new StringBuffer();
 		try {
-			int i;
 			// XML File Reading
 			Document doc = xmlFile();
 			// formats or normalized the file in case it is not
 			doc.getDocumentElement().normalize();
 			Element root = doc.getDocumentElement();
-			System.out.println("-"+root.getTagName()+"-");
+			// System.out.println("-" + root.getTagName() + "-");
 			String iCount;
-			
-			NodeList childern = root.getChildNodes();
-			//System.out.println(root.getNodeName());
-			//System.out.println("*"+root.getChildNodes()+"*");
-			//System.out.println("FirstChild"+root.getFirstChild());
-			System.out.println("childern.getLength()"+childern.getLength());
-			for (Node childNode = root.getFirstChild();childNode != null;childNode = childNode.getNextSibling())
-			{
-				System.out.println(" Child "+childNode.getLocalName());
+
+			NodeList children = root.getChildNodes();
+
+			// Parsing through all the child elements
+			for (int i = 0; i < children.getLength(); i++) {
+
+				Node child = children.item(i);
+				// Only parse through the ELEMENT nodes
+				if (child instanceof Element) {
+					Element childElement = (Element) child;
+					// Fetching the attributes for the element
+					displayAttributes(childElement, "text");
+					// System.out.println(childElement.getTagName());
+
+				}
+
 			}
 
+		} catch (Exception e) {
+			System.err.println("Error: " + e.getMessage());
+		} finally {
+
 		}
-		catch (Exception e) {
+		return menuString;
+	}
+
+	/**
+	 * @param childElement
+	 * @param attrName
+	 *            displays the value of the passed attribute
+	 */
+	private static void displayAttributes(Element childElement, String attrName) {
+		NamedNodeMap attrs = childElement.getAttributes();
+		for (int j = 0; j < attrs.getLength(); j++) {
+			Node attribute = attrs.item(j);
+			if (attribute.getNodeName() != attrName)
+				System.out.println();
+			System.out.print(" " + attribute.getNodeValue());
+		}
+	}
+
+	public static StringBuffer ReadSubMenu(String userInput) {
+		StringBuffer menuString = new StringBuffer();
+		try {
+			// XML File Reading
+			Document doc = xmlFile();
+			// formats or normalized the file in case it is not
+			doc.getDocumentElement().normalize();
+			Element root = doc.getDocumentElement();
+			// System.out.println("-" + root.getTagName() + "-");
+			String iCount;
+
+			NodeList children = root.getChildNodes();
+
+			// Parsing through all the child elements
+			for (int i = 0; i < children.getLength(); i++) {
+
+				Node child = children.item(i);
+				// Only parse through the ELEMENT nodes
+				if (child instanceof Element) {
+					Element childElement = (Element) child;
+					// Fetching the attributes for the element
+					NamedNodeMap attrs = childElement.getAttributes();
+					for (int j = 0; j < attrs.getLength(); j++) {
+						Node attribute = attrs.item(j);
+						//if the attribute "id" matches the userinput then parse the next level
+						if (attribute.getNodeName() == "id" && attribute.getNodeValue().equals(userInput)) {
+							//get the children of the current element
+							NodeList subMenu = childElement.getChildNodes();
+							for (int k = 0; k < subMenu.getLength(); k++) {
+								Node subMenuChild = subMenu.item(k);
+								if (subMenuChild instanceof Element) {
+									Element subMenuChildElement = (Element) subMenuChild;
+									Text subMenuText = (Text) subMenuChildElement.getFirstChild();
+									menuString.append("\n"+subMenuText.getData().trim());
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		} finally {
 
@@ -87,55 +159,3 @@ public class ReadXML {
 	}
 
 }
-
-//
-//
-//for(i = 0; i <childern.getLength(); i++)
-//{
-//	Node child = childern.item(i);
-//	
-//	if(child instanceof Element)
-//	{
-//		//System.out.println(i+"*"+childern.item(i)+"*");
-//		Element childElement = (Element) child; 
-//		Text textNode = (Text) childElement.getFirstChild();
-//		String text = textNode.getData().trim();
-//		//System.out.println(i+"**"+text);
-//		if (childElement.getTagName().equals("Menu"))
-//		{
-//			String name = text;;
-//			iCount = ((Integer) (i + 1)).toString();
-//			menuString.append(iCount + "."+ name + "\n");
-//			setMenuCount(iCount);
-//			
-//		}
-//			
-//			
-//	}
-//}
-
-
-
-//
-//NodeList nList; //, nSubList;
-//Node nNode ; //, nSubNode;
-//Element eElement;//, eSubElement;
-//String iCount;//, iSubCount;
-//int i;//, j;
-//int nListLength;//, nSubListLength;
-//
-//nList = doc.getElementsByTagName(nodeName);
-//nListLength = nList.getLength();
-//for (i = 0; i < nListLength; i++) {
-//	nNode = nList.item(i);
-//
-//	if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-//		eElement = (Element) nNode;
-//		iCount = ((Integer) (i + 1)).toString();
-//		menuString.append(iCount + "."
-//				+ eElement.getAttribute("text") + "\n");
-//		setMenuCount(iCount);
-//		
-//	}// End of if nNode
-//}
-

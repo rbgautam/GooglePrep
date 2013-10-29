@@ -1,27 +1,24 @@
-
 <?xml version="1.0" encoding="utf-8" ?>
-    <MenuRoot>
-        <Menu text="Sort" >
-            <SubMenu> Quick </SubMenu>
-            <SubMenu> Bubble </SubMenu>
-            <SubMenu> Insertion </SubMenu>
-        </Menu>
-        <Menu text="Search" >
-            <SubMenu> Linear </SubMenu>
-            <SubMenu> Binary </SubMenu>
-            
-        </Menu>
-        <Menu text="Tree" >
-            <SubMenu> RnB </SubMenu>
-            <SubMenu> Binary </SubMenu>
-            <SubMenu> N-nary </SubMenu>
-            <SubMenu> AVL </SubMenu>
-        </Menu>
-        <Menu text="Graphs" >
-            <SubMenu> Shortest Path </SubMenu>
-            <SubMenu> BFS </SubMenu>
-            <SubMenu> DFS </SubMenu>
-            <SubMenu> Min Span Tree </SubMenu>
-        </Menu>
-         
-    </MenuRoot>
+<MenuRoot>
+	<Menu id="1" text="Sort" >
+		<SubMenu> 1.Quick </SubMenu>
+		<SubMenu> 2.Bubble </SubMenu>
+		<SubMenu> 3.Insertion </SubMenu>
+	</Menu>
+	<Menu id="2" text="Search" >
+		<SubMenu> 1.Linear </SubMenu>
+		<SubMenu> 2.Binary </SubMenu>
+	</Menu>
+	<Menu id="3" text="Tree" >
+		<SubMenu> 1.RnB </SubMenu>
+		<SubMenu> 2.Binary </SubMenu>
+		<SubMenu> 3.N-nary </SubMenu>
+		<SubMenu> 4.AVL </SubMenu>
+	</Menu>
+	<Menu id = "4" text="Graphs" >
+		<SubMenu> 1.Shortest Path </SubMenu>
+		<SubMenu> 2.BFS </SubMenu>
+		<SubMenu> 3.DFS </SubMenu>
+		<SubMenu> 4.Min Span Tree </SubMenu>
+	</Menu>
+</MenuRoot>
