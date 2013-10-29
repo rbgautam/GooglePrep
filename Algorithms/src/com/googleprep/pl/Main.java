@@ -31,6 +31,8 @@ public class Main {
 		KeyboardInput keyObjNew = null;
 		System.out.println(ReadXML.ReadSubMenu(userInput));
 		
+		cObj.setData(" "); // display main menu read from an xml file
+		keyObjNew = cObj.getData();  //  read user's choice from the keyboard
 		String userInputSubMenu = keyObjNew.getStrUserInput();
 		System.out.println("User Choice is "+userInputSubMenu);
 		
