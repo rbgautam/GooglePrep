@@ -4,6 +4,7 @@
 package com.googleprep.pl;
 
 import com.googleprep.utils.KeyboardInput;
+import com.slist.SLinkedList;
 
 /**
  * @author Deltaman
@@ -16,25 +17,38 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		KeyboardInput keyObj;
-		String tagStr ="MenuRoot";
-		System.out.println("Menu List\n----------");
-		System.out.println(ReadXML.ReadTopMenu(tagStr)); //call to read  an xml file
-		Console cObj = Console.CreateConsole();  // Create a console object
-		cObj.setData(ReadXML.getMenuCount()); // display main menu read from an xml file
-		keyObj = cObj.getData();  //  read user's choice from the keyboard
+/**
+ * 	To generate menu and sub menu from an XML file
+ */
+//		KeyboardInput keyObj;
+//		String tagStr ="MenuRoot";
+//		System.out.println("Menu List\n----------");
+//		System.out.println(ReadXML.ReadTopMenu(tagStr)); //call to read  an xml file
+//		Console cObj = Console.CreateConsole();  // Create a console object
+//		cObj.setData(ReadXML.getMenuCount()); // display main menu read from an xml file
+//		keyObj = cObj.getData();  //  read user's choice from the keyboard
+//		
+//		String userInput = keyObj.getStrUserInput();
+//		System.out.println("User Choice is "+userInput);
+//		
+//		KeyboardInput keyObjNew = null;
+//		System.out.println(ReadXML.ReadSubMenu(userInput));
+//		
+//		cObj.setData(ReadXML.getMenuCount()); // display main menu read from an xml file
+//		keyObjNew = cObj.getData();  //  read user's choice from the keyboard
+//		String userInputSubMenu = keyObjNew.getStrUserInput();
+//		System.out.println("User Choice is "+userInputSubMenu);
 		
-		String userInput = keyObj.getStrUserInput();
-		System.out.println("User Choice is "+userInput);
-		
-		KeyboardInput keyObjNew = null;
-		System.out.println(ReadXML.ReadSubMenu(userInput));
-		
-		cObj.setData(ReadXML.getMenuCount()); // display main menu read from an xml file
-		keyObjNew = cObj.getData();  //  read user's choice from the keyboard
-		String userInputSubMenu = keyObjNew.getStrUserInput();
-		System.out.println("User Choice is "+userInputSubMenu);
+		/**
+		 * To test Slist
+		 */
+		SLinkedList sll = new SLinkedList();
+		System.out.println(sll.isEmpty());
+		System.out.println(sll.toString());
+		sll.addFirst(1);
+		sll.addFirst(2);
+		sll.addFirst(3);
+		System.out.println(sll.toString());
 		
 	}
 

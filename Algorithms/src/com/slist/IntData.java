@@ -1,7 +1,8 @@
 package com.slist;
 
-public class IntData<Integer>  implements IData<Integer> { //extends Data<Integer>
 
+public class IntData  implements IData<Integer>  //extends Data<Integer>
+{
 	private Integer value;
 	
 	@Override

@@ -36,6 +36,11 @@ public class ReadXML {
 		// subMenu(s)
 		menuCount = menuCount + " " + iCount;
 	}
+	public static void resetMenuCount() {
+		// menuCount construct string for the choices user can make for the
+		// subMenu(s)
+		menuCount =null;
+	}
 
 	@SuppressWarnings("finally")
 	private static Document xmlFile() // throws
@@ -66,12 +71,12 @@ public class ReadXML {
 			doc.getDocumentElement().normalize();
 			Element root = doc.getDocumentElement();
 			// System.out.println("-" + root.getTagName() + "-");
-			String iCount;
+			String iCount = new String();
 
 			NodeList children = root.getChildNodes();
 
 			// Parsing through all the child elements
-			for (int i = 0; i < children.getLength(); i++) {
+			for (int i = 0, j=0; i < children.getLength(); i++) {
 
 				Node child = children.item(i);
 				// Only parse through the ELEMENT nodes
@@ -80,10 +85,12 @@ public class ReadXML {
 					// Fetching the attributes for the element
 					displayAttributes(childElement, "text");
 					// System.out.println(childElement.getTagName());
-
+					j++;
+					iCount = " "+ iCount + " " +j;
+					//System.out.println(i ); 				
 				}
 
-			}
+			}setMenuCount(iCount) ;
 
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
@@ -117,7 +124,7 @@ public class ReadXML {
 			doc.getDocumentElement().normalize();
 			Element root = doc.getDocumentElement();
 			// System.out.println("-" + root.getTagName() + "-");
-			String iCount;
+			String iCount = new String();
 
 			NodeList children = root.getChildNodes();
 
@@ -136,14 +143,21 @@ public class ReadXML {
 						if (attribute.getNodeName() == "id" && attribute.getNodeValue().equals(userInput)) {
 							//get the children of the current element
 							NodeList subMenu = childElement.getChildNodes();
-							for (int k = 0; k < subMenu.getLength(); k++) {
+							
+							resetMenuCount();
+							//setMenuCount(null) ;
+							for (int k = 0, l=0;  k < subMenu.getLength(); k++) {
 								Node subMenuChild = subMenu.item(k);
 								if (subMenuChild instanceof Element) {
 									Element subMenuChildElement = (Element) subMenuChild;
 									Text subMenuText = (Text) subMenuChildElement.getFirstChild();
 									menuString.append("\n"+subMenuText.getData().trim());
+									l++; 
+									iCount = " "+ iCount + " " +l;
 								}
 							}
+//							System.out.println(iCount);
+							setMenuCount(iCount) ;
 						}
 					}
 
