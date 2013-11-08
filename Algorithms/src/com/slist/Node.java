@@ -31,6 +31,13 @@ public class Node {
 
 
 
+	public Node(int intData, Node next) {
+		// TODO Check the constructor 
+		data = new IntData();
+		setData(intData);
+		this.next= next;
+	}
+
 	public void setData(Integer intdata) {
 		data.setData(intdata);
 	}
